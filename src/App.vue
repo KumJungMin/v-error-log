@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Sample from './components/Sample.vue'
+import TreeParent from './components/TreeParent.vue'
 import SampleChild from './components/SampleChild.vue'
 </script>
 
 <template>
-  <Sample />
+  <TreeParent />
   <SampleChild />
 </template>

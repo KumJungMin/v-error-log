@@ -10,10 +10,6 @@ watch(count, (newVal, oldVal) => {
 })
 
 aa = 2
-
-const errorFunc = () => {
-  aa = 3
-}
 </script>
 
 <template>
@@ -21,7 +17,7 @@ const errorFunc = () => {
     <h3>Sample Child Component</h3>
     <button @click="aa = 5">wrong count using click event</button>
     <br /><br />
-    <button @click="errorFunc()">wrong count using click event function</button>
+    <button @click="errorFunc()">undefined event function</button>
     <br /><br />
     <button @click="count++">count is: {{ count }}</button>
   </div>

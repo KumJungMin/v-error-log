@@ -1,16 +1,11 @@
-<script setup lang="ts">
-import { ref, watch } from 'vue'
+<script setup>
+import { onMounted } from 'vue'
 
-const count = ref(0)
 const aa = 1
 
-watch(count, (newVal, oldVal) => {
-  console.log('count changed', newVal, oldVal)
-  aa = 4
+onMounted(() => {
+  aa = 2
 })
-
-
-aa = 2
 
 const errorFunc = () => {
   aa = 3
@@ -20,8 +15,6 @@ const errorFunc = () => {
 <template>
   <div class="sample">
     <h3>Sample Component</h3>
-    <button @click="aa = 5">wrong count using click event</button>
-    <br /><br />
     <button @click="errorFunc()">wrong count using click event function</button>
     <br /><br />
     <button @click="count++">count is: {{ count }}</button>
