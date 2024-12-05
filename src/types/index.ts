@@ -5,4 +5,4 @@ export type ViewModel = Vue | ComponentPublicInstance | null;
 
 export type VueApp = VueConstructor | App;
 
-export type InterceptorHandler = (error: Error, componentName: string, lifecycleHook: string) => void;
+export type InterceptorHandler = (errorMessage: string) => void;
