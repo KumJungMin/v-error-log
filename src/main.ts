@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 
-import { attachErrorInterceptor } from './helpers/error-log';
+import { attachErrorInterceptor } from './helpers/config';
 
 
 const app = createApp(App);
