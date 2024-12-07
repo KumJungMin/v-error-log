@@ -9,8 +9,7 @@ const app = createApp(App);
 
 
 const errorHandler = (errorMessage: string) => {
-  console.log(errorMessage);
-  console.log('----------------------------------------------');
+  console.error(errorMessage);
 }
 
 attachErrorInterceptor(app, errorHandler);

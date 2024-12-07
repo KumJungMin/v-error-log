@@ -11,16 +11,19 @@ export function beautifyError(
   if (vm) {
     const componentName = formatComponentName(vm, false);
     messageParts.push(`Component: ${componentName}`);
+    if (lifecycleHook) {
+      messageParts.push(`Lifecycle Hook: ${lifecycleHook}`);
+    }
 
-    if (lifecycleHook) messageParts.push(`Lifecycle Hook: ${lifecycleHook}`);
     messageParts.push(generateComponentTrace(vm));
   }
-  if (error.stack) parseErrorStack(error, messageParts);
+  if (error.stack) messageParts.push(`\n\n${error.stack}`);
   
 
   return messageParts.join('\n');
 }
 
+// TODO: sourceMap support
 function parseErrorStack(error: Error, messageParts: string[]) {
   const stackLines = error.stack?.split('\n');
   if (!stackLines) return;

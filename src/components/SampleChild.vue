@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 const count = ref(0)
 const aa = 1
-
-watch(count, (newVal, oldVal) => {
-  console.log('count changed', newVal, oldVal)
-  aa = 4
-})
 
 aa = 2
 </script>
