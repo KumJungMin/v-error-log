@@ -5,7 +5,8 @@ export function useErrorLogger() {
   const instance = getCurrentInstance();
 
   function sendErrorLog(error: Error) {
-    const formattedError = instance ? beautifyError(error, instance.proxy, null) : '';
+    const instanceProxy = instance?.proxy;
+    const formattedError = beautifyError(error, instanceProxy)
     
     console.error(formattedError);
   }

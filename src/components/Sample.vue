@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue'
 import { useErrorLogger } from  '../composbles/use-error'
 
 const { sendErrorLog } = useErrorLogger();
@@ -10,10 +11,11 @@ onMounted(() => {
   aa = 2
 })
 
-const errorFunc = () => {
+function errorFunc() {
   try {
   aa = 3
   } catch(e) {
+    console.log('errorFunc error')
     sendErrorLog(e)
   }
 }
