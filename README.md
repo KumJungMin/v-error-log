@@ -33,4 +33,4 @@ app.mount('#app')
 
 > console example
 
-<img src="./public/example_1.png" />
+<img src="./public/example_2.png" />
