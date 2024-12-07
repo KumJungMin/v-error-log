@@ -4,7 +4,7 @@ import { formatComponentName, generateComponentTrace } from './component';
 export function beautifyError(
   error: Error,
   vm?: ViewModel,
-  lifecycleHook?: string
+  lifecycleHook?: string | null
 ): string {
   const messageParts: string[] = [`Error: ${error.message}`];
 
