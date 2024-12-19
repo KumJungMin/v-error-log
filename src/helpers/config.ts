@@ -1,16 +1,21 @@
-import type { VueApp, ViewModel, InterceptorHandler } from "../types";
-import { beautifyError } from "./error";
+import type { VueApp, ViewModel, InterceptorHandler } from '../types';
+import { ComponentPublicInstance } from 'vue';
+import { beautifyError } from './error';
 
 export const attachErrorInterceptor = (
   app: VueApp,
   errorHandler: InterceptorHandler,
 ): void => {
   app.config.errorHandler = (
-    error: Error,
-    vm: ViewModel,
-    lifecycleHook: string,
+    err: unknown,
+    instance: ComponentPublicInstance | null,
+    info: string,
   ): void => {
-    const errorMessage = beautifyError(error, vm, lifecycleHook);
+    const errorMessage = beautifyError(
+      err as Error,
+      instance as ViewModel,
+      info,
+    );
     errorHandler(errorMessage);
   };
 };

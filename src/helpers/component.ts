@@ -1,10 +1,10 @@
-import type { ViewModel } from "../types";
+import type { ViewModel, TreeItem } from '../types';
 
-const ROOT_COMPONENT_NAME = "<Root>";
-const ANONYMOUS_COMPONENT_NAME = "<Anonymous>";
+const ROOT_COMPONENT_NAME = '<Root>';
+const ANONYMOUS_COMPONENT_NAME = '<Anonymous>';
 
 export function generateComponentTrace(vm?: ViewModel): string {
-  const hasParentInstance = vm && (vm._isVue || vm.__isVue) && vm.$parent;
+  const hasParentInstance = vm && vm.$parent;
 
   if (hasParentInstance) {
     const tree = stackTrace(vm);
@@ -13,21 +13,20 @@ export function generateComponentTrace(vm?: ViewModel): string {
   return `\n\n(found in ${formatComponentName(vm)})`;
 }
 
-
-function stackTrace(vm: ViewModel): ViewModel[] {
-  const tree = [];
+function stackTrace(vm: ViewModel): TreeItem[] {
+  const tree: TreeItem[] = [];
   let currentRecursiveSequence = 0;
 
   while (vm) {
     if (tree.length > 0) {
-      const last: ViewModel = tree[tree.length - 1];
+      const last: TreeItem = tree[tree.length - 1];
 
-      if (last.constructor === vm.constructor) {
+      if (last?.constructor === vm.constructor) {
         currentRecursiveSequence++;
         vm = vm.$parent;
         continue;
       } else if (currentRecursiveSequence > 0) {
-        tree[tree.length - 1] = [last, currentRecursiveSequence];
+        tree[tree.length - 1] = [last as ViewModel, currentRecursiveSequence];
         currentRecursiveSequence = 0;
       }
     }
@@ -37,9 +36,9 @@ function stackTrace(vm: ViewModel): ViewModel[] {
   return tree;
 }
 
-function formatTree(tree: ViewModel[]) {
-  const stackTreeList = (i: number, vm: ViewModel) => {
-    const prefix = i === 0 ? "---> " : " ".repeat(5 + i * 2);
+function formatTree(tree: TreeItem[]) {
+  const stackTreeList = (i: number, vm: TreeItem) => {
+    const prefix = i === 0 ? '---> ' : ' '.repeat(5 + i * 2);
     const stackedTree = Array.isArray(vm)
       ? `${formatComponentName(vm[0])}... (${vm[1]} recursive calls)`
       : formatComponentName(vm);
@@ -47,7 +46,7 @@ function formatTree(tree: ViewModel[]) {
     return `${prefix} ${stackedTree}`;
   };
 
-  const result = tree.map((vm, i) => stackTreeList(i, vm)).join("\n");
+  const result = tree.map((vm, i) => stackTreeList(i, vm)).join('\n');
 
   return `\n\nfound in\n\n${result}`;
 }
@@ -69,7 +68,7 @@ export function formatComponentName(
   }
 
   const componentName = name ? `<${name}>` : ANONYMOUS_COMPONENT_NAME;
-  const filePath = file && includeFile ? ` at ${file}` : "";
+  const filePath = file && includeFile ? ` at ${file}` : '';
 
   return filePath ? `${componentName} ${filePath}` : componentName;
 }
