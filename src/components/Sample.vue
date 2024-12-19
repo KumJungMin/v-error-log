@@ -1,25 +1,24 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useErrorLogger } from  '../composbles/use-error'
+import { onMounted } from "vue";
+import { useErrorLogger } from "../composbles/use-error";
 
 const { sendErrorLog } = useErrorLogger();
-const emit = defineEmits(['item-clicked'])
+const emit = defineEmits(["item-clicked"]);
 
-const aa = 1
+const aa = 1;
 
 onMounted(() => {
-  aa = 2
-})
+  aa = 2;
+});
 
 function errorFunc() {
   try {
-  aa = 3
-  } catch(e) {
-    console.log('errorFunc error')
-    sendErrorLog(e)
+    aa = 3;
+  } catch (e) {
+    console.log("errorFunc error");
+    sendErrorLog(e);
   }
 }
-
 </script>
 
 <template>
@@ -27,7 +26,9 @@ function errorFunc() {
     <h3>Sample Component</h3>
     <button @click="errorFunc()">wrong count using click event function</button>
     <br /><br />
-    <button @click="emit('item-clicked', { name: 'sample' })">emit event</button>
+    <button @click="emit('item-clicked', { name: 'sample' })">
+      emit event
+    </button>
 
     <br /><br />
     <hr />

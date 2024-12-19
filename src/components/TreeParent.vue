@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Sample @item-clicked="some"/>
+    <Sample @item-clicked="some" />
   </div>
 </template>
 
 <script setup>
-import Sample from './Sample.vue'
+import Sample from "./Sample.vue";
 
-const a = 1
+const a = 1;
 
 const some = (item) => {
-  a = 2
-}
+  a = 2;
+};
 </script>

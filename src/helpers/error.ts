@@ -1,10 +1,10 @@
-import { ViewModel } from '../types';
-import { formatComponentName, generateComponentTrace } from './component';
+import { ViewModel } from "../types";
+import { formatComponentName, generateComponentTrace } from "./component";
 
 export function beautifyError(
   error: Error,
   vm?: ViewModel,
-  lifecycleHook?: string | null
+  lifecycleHook?: string | null,
 ): string {
   const messageParts: string[] = [`Error: ${error.message}`];
 
@@ -16,6 +16,6 @@ export function beautifyError(
     messageParts.push(generateComponentTrace(vm));
   }
   if (error.stack) messageParts.push(`\n\n${error.stack}`);
-  
-  return messageParts.join('\n');
+
+  return messageParts.join("\n");
 }

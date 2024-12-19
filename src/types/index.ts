@@ -1,5 +1,5 @@
-import type { Vue, VueConstructor } from 'vue'; 
-import type { App, ComponentPublicInstance } from 'vue'; 
+import type { Vue, VueConstructor } from "vue";
+import type { App, ComponentPublicInstance } from "vue";
 
 export type ViewModel = Vue | ComponentPublicInstance | null;
 

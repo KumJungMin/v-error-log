@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const count = ref(0)
-const aa = 1
+const count = ref(0);
+const aa = 1;
 
-aa = 2
+aa = 2;
 </script>
 
 <template>
@@ -17,7 +17,6 @@ aa = 2
     <button @click="count++">count is: {{ count }}</button>
   </div>
 </template>
-
 
 <style>
 .sample-child {
